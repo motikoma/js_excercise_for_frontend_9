@@ -6,6 +6,10 @@
       "eslint:recommended",
       "plugin:prettier/recommended"
     ],
+    "globals": {
+      "window": true,
+      "document": true
+    },
     "rules": {
       "prettier/prettier": [
         "error",
