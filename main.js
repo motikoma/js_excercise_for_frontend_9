@@ -13,12 +13,27 @@
   //   - quizzes : fetchで取得したクイズデータの配列(resutls)を保持する
   //   - currentIndex : 現在何問目のクイズに取り組んでいるのかをインデックス番号で保持する
   //   - numberOfCorrects : 正答数を保持するう
+  const gameState = {
+    quizzes: '',
+    currentIndex: '',
+    numberOfCorrects: '',
+  };
 
   // HTMLのid値がセットされているDOMを取得する
+  const ElementQuestion = document.getElementById('question');
+  const ElementAnswers = document.getElementById('answers');
+  const ElementResult = document.getElementById('result');
+  const ElementRestartButton = document.getElementById('restart-button');
 
   // ページの読み込みが完了したらクイズ情報を取得する
+  const quizData = window.fetch(API_URL).then(response => {
+    return response.json();
+  });
 
   // 「Restart」ボタンをクリックしたら再度クイズデータを取得する
+  ElementRestartButton.addEventListener('click', () => {
+    quizData;
+  });
 
   // `fetchQuizData関数`を実装する
   // - 実現したいこと
