@@ -14,9 +14,9 @@
   //   - currentIndex : 現在何問目のクイズに取り組んでいるのかをインデックス番号で保持する
   //   - numberOfCorrects : 正答数を保持するう
   const gameState = {
-    quizzes: '',
-    currentIndex: '',
-    numberOfCorrects: '',
+    quizzes: [],
+    currentIndex: 0,
+    numberOfCorrects: 0,
   };
 
   // HTMLのid値がセットされているDOMを取得する
@@ -26,21 +26,13 @@
   const elementRestartButton = document.getElementById('restart-button');
 
   // ページの読み込みが完了したらクイズ情報を取得する
-   window.addEventListener('load', (event) => {
-    fetch(API_URL).then(response => {
-      return response.json();
-    }).then(data => {
-      console.log(data);
-    })
+  window.addEventListener('load', (event) => {
+    fetchQuizData();
   });
 
   // 「Restart」ボタンをクリックしたら再度クイズデータを取得する
   elementRestartButton.addEventListener('click', (event) => {
-    fetch(API_URL).then(response => {
-      return response.json();
-    }).then(data => {
-      console.log(data);
-    })
+    fetchQuizData();
   });
 
   // `fetchQuizData関数`を実装する
@@ -61,6 +53,26 @@
   //   - 無し
   // - 戻り値
   //   - 無し
+  const fetchQuizData = async () => {
+    // Webページ上の表示をリセット
+    elementQuestion.textContent = "Now loading...";
+    elementResult.textContent = "";
+    elementRestartButton.setAttribute("hidden", "hidden");
+
+    try {
+      //クイズデータを取得
+      const response = await fetch(API_URL);
+      const quizData = await response.json();
+      //取得したクイズデータを格納
+      gameState.quizzes.push(quizData.results);
+      //問題のインデックス番号をリセット
+      gameState.currentIndex = 0;
+      //正答数をリセット
+      gameState.numberOfCorrects = 0;
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   // setNextQuiz関数を実装する
   // - 実現したいこと
