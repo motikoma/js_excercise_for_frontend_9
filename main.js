@@ -57,14 +57,14 @@
     // Webページ上の表示をリセット
     elementQuestion.textContent = "Now loading...";
     elementResult.textContent = "";
-    elementRestartButton.setAttribute("hidden", "hidden");
+    elementRestartButton.hidden = true;
 
     try {
       //クイズデータを取得
       const response = await fetch(API_URL);
       const quizData = await response.json();
       //取得したクイズデータを格納
-      gameState.quizzes.push(quizData.results);
+      gameState.quizzes = quizData.results;
       //問題のインデックス番号をリセット
       gameState.currentIndex = 0;
       //正答数をリセット
