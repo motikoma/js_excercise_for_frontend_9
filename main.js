@@ -20,19 +20,27 @@
   };
 
   // HTMLのid値がセットされているDOMを取得する
-  const ElementQuestion = document.getElementById('question');
-  const ElementAnswers = document.getElementById('answers');
-  const ElementResult = document.getElementById('result');
-  const ElementRestartButton = document.getElementById('restart-button');
+  const elementQuestion = document.getElementById('question');
+  const elementAnswers = document.getElementById('answers');
+  const elementResult = document.getElementById('result');
+  const elementRestartButton = document.getElementById('restart-button');
 
   // ページの読み込みが完了したらクイズ情報を取得する
-  const quizData = window.fetch(API_URL).then(response => {
-    return response.json();
+   window.addEventListener('load', (event) => {
+    fetch(API_URL).then(response => {
+      return response.json();
+    }).then(data => {
+      console.log(data);
+    })
   });
 
   // 「Restart」ボタンをクリックしたら再度クイズデータを取得する
-  ElementRestartButton.addEventListener('click', () => {
-    quizData;
+  elementRestartButton.addEventListener('click', (event) => {
+    fetch(API_URL).then(response => {
+      return response.json();
+    }).then(data => {
+      console.log(data);
+    })
   });
 
   // `fetchQuizData関数`を実装する
