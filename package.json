@@ -4,6 +4,7 @@
   "description": "このレポジトリは[Web白熱教室](https://tsuyopon.xyz/)の[JavaScriptの学習コンテンツ > JavaScriptフロントエンド編](https://tsuyopon.xyz/learning-contents/web-dev/javascript/frontend/)にある「[【エクササイズ】async/awaitを使ってクイズアプリを作る](https://tsuyopon.xyz/learning-contents/web-dev/javascript/frontend/js-excercise-for-frontend-9/)」で利用するものです。",
   "main": "main.js",
   "scripts": {
+    "lint": "eslint --fix .",
     "precommit": "lint-staged"
   },
   "lint-staged": {
